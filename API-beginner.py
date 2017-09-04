@@ -16,9 +16,9 @@ if status_code == 200:
 
 	fromcurr = json_data['base']
 	tocurr = list(json_data['rates'].keys())[0]
-	rate = json_data['rates'][f'{tocurr}']
+	rate = json_data['rates'][tocurr]
 	dateofconv = json_data['date']
 	print(f"The conervsation rate as of {dateofconv} from {fromcurr} to {tocurr} is {rate}")
 
 else:
-	print("Error in fetching data from API")	
+	print("Error in fetching data from API")
