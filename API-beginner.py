@@ -1,10 +1,8 @@
 import requests
 import json
 
-f = input("Convert from : ")
-f = f.upper()
-t = input("Convert to : ")
-t = t.upper()
+f = input("Convert from : ").upper()
+t = input("Convert to : ").upper()
 
 parameters = {'base':f, 'symbols':t}
 response = requests.get("http://api.fixer.io/latest", params = parameters)
