@@ -3,11 +3,22 @@ import json
 
 parameters = {'base':'USD', 'symbols':'INR'}
 response = requests.get("http://api.fixer.io/latest", params = parameters)
+
 status_code = response.status_code
-print(status_code)
-content = response.content
-fromcurr = json.loads(content)['base']
-tocurr = list(json.loads(content)['rates'].keys())[0]
-rate = json.loads(content)['rates'][f'{tocurr}']
-dateofconv = json.loads(content)['date']
-print(f"The conervsation rate as of {dateofconv} from {fromcurr} to {tocurr} is {rate}")
+
+if status_code == 200:
+
+	# content = response.content
+	# json_data = json.loads(content)
+
+	# OR directly decode the json string to python object
+	json_data = response.json()
+
+	fromcurr = json_data['base']
+	tocurr = list(json_data['rates'].keys())[0]
+	rate = json_data['rates'][f'{tocurr}']
+	dateofconv = json_data['date']
+	print(f"The conervsation rate as of {dateofconv} from {fromcurr} to {tocurr} is {rate}")
+
+else:
+	print("Error in fetching data from API")	
